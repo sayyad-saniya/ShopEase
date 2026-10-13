@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <display-name>ShopEase</display-name>
+
+    <!-- Filter order matters and is NOT guaranteed by @WebFilter annotations alone,
+         so these three are wired explicitly here:
+         CorsFilter (handles preflight + headers for every /api call)
+           -> ExceptionHandlingFilter (turns any exception below into clean JSON)
+             -> AuthFilter (only for /api/cart/* and /api/orders/*)
+               -> the matching @WebServlet -->
+
+    <filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>com.shopease.filter.CorsFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CorsFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>ExceptionHandlingFilter</filter-name>
+        <filter-class>com.shopease.filter.ExceptionHandlingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ExceptionHandlingFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.shopease.filter.AuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/api/cart/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/api/orders/*</url-pattern>
+    </filter-mapping>
+
+    <session-config>
+        <session-timeout>1440</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
+    </session-config>
+
+</web-app>

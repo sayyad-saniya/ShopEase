@@ -1,0 +1,97 @@
+/* ShopEase design tokens.
+   Bootstrap 5.3 exposes its palette as CSS variables, so re-pointing --bs-primary
+   (and friends) here re-skins the stock components without a Sass rebuild. */
+
+:root {
+  --bs-primary: #e1553a;
+  --bs-primary-rgb: 225, 85, 58;
+  --bs-primary-text-emphasis: #b8402a;
+  --bs-link-color: #e1553a;
+  --bs-link-color-rgb: 225, 85, 58;
+  --bs-link-hover-color: #b8402a;
+  --bs-body-bg: #f4f5f7;
+  --bs-body-color: #1b1b1f;
+  --bs-body-font-family: 'Inter', system-ui, sans-serif;
+  --bs-border-radius: 10px;
+  --bs-border-radius-lg: 14px;
+  --bs-border-radius-sm: 6px;
+
+  --shop-ink: #14151a;
+  --shop-sage: #6e8f7c;
+  --shop-border: #e2e4e8;
+  --shop-card: #ffffff;
+}
+
+body {
+  background: var(--bs-body-bg);
+}
+
+h1, h2, h3, h4, h5, .navbar-brand {
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  color: var(--shop-ink);
+}
+
+.navbar-dark.shop-navbar {
+  background: var(--shop-ink) !important;
+}
+
+.card {
+  border-color: var(--shop-border);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.product-card {
+  height: 100%;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 24px rgba(20, 21, 26, 0.1);
+  transform: translateY(-2px);
+}
+
+.product-card img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #eef0f2;
+}
+
+.badge-category {
+  background: rgba(110, 143, 124, 0.15);
+  color: var(--shop-sage);
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+
+.btn-primary {
+  font-weight: 600;
+}
+
+.price-tag {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  color: var(--shop-ink);
+}
+
+.category-pill {
+  border: 1px solid var(--shop-border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  background: #fff;
+  color: var(--bs-body-color);
+  white-space: nowrap;
+}
+
+.category-pill.active {
+  background: var(--shop-ink);
+  border-color: var(--shop-ink);
+  color: #fff;
+}
+
+.search-took {
+  font-size: 0.75rem;
+  color: #8a8f98;
+}
